@@ -1,11 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Verify_OTP = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Verify_OTP</Text>
-    </View>
+    </SafeAreaView>
   )
 }
 
