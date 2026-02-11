@@ -1,11 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Login = () => {
   return (
-    <View>
+    <SafeAreaView style={{justifyContent:'center',alignItems:'center', flex:1}}>
       <Text>Login</Text>
-    </View>
+    </SafeAreaView>
   )
 }
 

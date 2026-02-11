@@ -32,7 +32,9 @@ const Auth = () => {
   }
 
   useEffect(() => {
-    setTimeout(loading_timeout, 2000)
+    const timeoutId = setTimeout(loading_timeout, 2000)
+
+    return () => clearTimeout(timeoutId)
   }, [])
 
 
