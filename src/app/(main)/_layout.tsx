@@ -4,7 +4,11 @@ import { StyleSheet } from 'react-native'
 
 const MainStack = () => {
   return (
-<Stack></Stack>
+<Stack screenOptions={{headerShown:false}}>
+  <Stack.Screen  name="Chat" 
+  // options={{headerTitle: 'Chat'}}
+  />
+</Stack>
   )
 }
 

@@ -19,7 +19,8 @@
         "monochromeImage": "./src/assets/images/adaptive-icon.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.ChatApp"
     },
     "web": {
       "output": "static",

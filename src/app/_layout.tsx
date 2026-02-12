@@ -1,13 +1,24 @@
 import { Redirect, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect, useState } from 'react';
+import { storage } from '../utils/utils';
 
 SplashScreen.preventAutoHideAsync();
 const RootNavigation = () => {
   const [isLogin, setIsLogin] = useState(false)
+
+  const access_token = storage.getString('access_token')
   useEffect(() => {
     SplashScreen.hideAsync()
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    //check user is logged in or not 
+    console.log(access_token);
+    if(access_token){
+      setIsLogin(true);
+    }
+  }, [access_token])
 
 
   return (
