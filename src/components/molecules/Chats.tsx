@@ -1,10 +1,54 @@
+import imagePath from '@/src/constants/imagePath'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
+import MessageCard from './MessageCard'
 
 const Chats = () => {
+  const data = [
+    {
+      image: imagePath.logo,
+      name: "Nandini Jadhav",
+      message: 'Hello',
+      time: '5:27 am',
+      messageCount: 1,
+    },
+    {
+      image: imagePath.logo,
+      name: "Nandini",
+      message: 'How are you',
+      time: '2:20 am',
+      messageCount: 0,
+    },
+    {
+      image: imagePath.logo,
+      name: "Jadhav",
+      message: 'Bye',
+      time: '6:27 am',
+      messageCount: 0,
+    },
+    {
+      image: imagePath.logo,
+      name: "Abc",
+      message: 'ok',
+      time: '6:27 am',
+      messageCount: 9,
+    },
+  ]
+
   return (
-    <View style={{flex:1,backgroundColor:'green'}}>
-      <Text>Chats</Text>
+    <View style={{ flex: 1, backgroundColor: '#ffffffe1' }}>
+      <FlatList data={data} renderItem={({ item }) => {
+        return <MessageCard
+          name={item?.name}
+          image={item?.image}
+          message={item?.message}
+          time={item?.time}
+          count={item?.messageCount}
+
+        />
+      }
+      } />
+
     </View>
   )
 }
