@@ -2,27 +2,41 @@ import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 
-const MessageCard = ({ name, message, time, count, image, logoComponent }: any) => {
+const MessageCard = ({
+    name,
+    message,
+    time,
+    count,
+    image,
+    logoComponent,
+    rightIcon,
+    messageLeftIcon,
+    onPress
+}: any) => {
     return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
             <View style={styles.leftContainer}>
                 <View>
-                <Image source={image} style={styles.image} />
-                {logoComponent}
+                    <Image source={image} style={styles.image} />
+                    {logoComponent}
                 </View>
                 <View>
                     <Text style={styles.name}>{name}</Text>
-                    <Text style={styles.message}>{message}</Text>
+                    <View style={styles.flexRow}>
+                        {messageLeftIcon}
+                        <Text style={styles.message}>{message}</Text>
+                    </View>
                 </View>
             </View>
             <View style={styles.rightContainer}>
-                { time && <Text style={styles.time}>{time}</Text>}
+                {time && <Text style={styles.time}>{time}</Text>}
 
                 {!!count && (
                     <View style={styles.messageCountContainer}>
                         <Text style={styles.messageCount}>{count}</Text>
                     </View>
                 )}
+                {rightIcon}
             </View>
         </TouchableOpacity>
     )
@@ -50,7 +64,7 @@ const styles = StyleSheet.create({
         color: 'black'
     },
     message: {
-        fontSize: moderateScale(13),
+        fontSize: moderateScale(13.6),
         color: "#889095"
     },
     time: {
@@ -60,7 +74,7 @@ const styles = StyleSheet.create({
 
     },
     messageCountContainer: {
-        backgroundColor: '#036A01',
+        backgroundColor: '#207a58',
         width: moderateScale(23),
         height: moderateScale(23),
         alignItems: 'center',
@@ -73,7 +87,7 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(12)
     },
     leftContainer: {
-        // justifyContent:'space-between',
+    
         gap: scale(15),
         flexDirection: 'row',
         alignItems: 'center'
@@ -82,4 +96,9 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         gap: scale(6)
     },
+    flexRow: {
+        flexDirection: 'row',
+        alignItems:'center',
+        gap: moderateScale(5)
+    }
 })

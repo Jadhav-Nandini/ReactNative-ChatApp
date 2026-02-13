@@ -1,9 +1,17 @@
 import imagePath from '@/src/constants/imagePath'
+import { router } from 'expo-router'
 import React from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import MessageCard from './MessageCard'
 
 const Chats = () => {
+
+  const onPressFunction = () => {
+    router.navigate({
+      pathname:'/chat',
+    })
+  }
+  
   const data = [
     {
       image: imagePath.logo,
@@ -11,6 +19,7 @@ const Chats = () => {
       message: 'Hello',
       time: '5:27 am',
       messageCount: 1,
+      onPress:onPressFunction,
     },
     {
       image: imagePath.logo,
@@ -18,6 +27,8 @@ const Chats = () => {
       message: 'How are you',
       time: '2:20 am',
       messageCount: 0,
+      onPress:onPressFunction,
+
     },
     {
       image: imagePath.logo,
@@ -25,6 +36,7 @@ const Chats = () => {
       message: 'Bye',
       time: '6:27 am',
       messageCount: 0,
+      onPress:onPressFunction,
     },
     {
       image: imagePath.logo,
@@ -32,6 +44,7 @@ const Chats = () => {
       message: 'ok',
       time: '6:27 am',
       messageCount: 9,
+      onPress:onPressFunction,
     },
   ]
 
@@ -44,6 +57,7 @@ const Chats = () => {
           message={item?.message}
           time={item?.time}
           count={item?.messageCount}
+          onPress={item?.onPress}
 
         />
       }

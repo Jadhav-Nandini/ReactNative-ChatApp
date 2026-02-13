@@ -10,6 +10,7 @@ const Status = () => {
       image: imagePath.logo,
       name: "Nandini Jadhav",
       message: '2 minutes ago',
+      
     },
     {
       image: imagePath.logo,

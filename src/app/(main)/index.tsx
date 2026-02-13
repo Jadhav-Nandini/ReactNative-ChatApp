@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 const Main = () => {
-  const [currentPage, setCurrentPage] = useState('calls');
+  const [currentPage, setCurrentPage] = useState('chat');
   const ActivePage = () => {
     switch (currentPage) {
       case 'chat':
