@@ -5,10 +5,12 @@ import Status from '@/src/components/molecules/Status';
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 const Main = () => {
   const [currentPage, setCurrentPage] = useState('chat');
+  const [menuVisible, setMenuVisible] = useState(false);
+
   const ActivePage = () => {
     switch (currentPage) {
       case 'chat':
@@ -27,12 +29,14 @@ const Main = () => {
       <View style={styles.whatsappHeaderStyle}>
         <Text style={styles.whatsappText}>WhatsApp</Text>
         <View style={styles.iconContainer}>
-          <FontAwesome name="search" 
-          style={styles.headerIcon} 
-          onPress={()=>{alert('search')}} />
-          <Entypo name="dots-three-vertical" 
-          style={styles.headerIcon}
-          onPress={()=>{alert('dots')}} />
+          <FontAwesome name="search"
+            style={styles.headerIcon}
+          // onPress={()=>{alert('search')}} 
+          />
+          <Entypo name="dots-three-vertical"
+            style={styles.headerIcon}
+            onPress={() => setMenuVisible(true)}
+          />
         </View>
       </View>
     )
@@ -42,6 +46,40 @@ const Main = () => {
     <View style={styles.container}>
       {/* <StatusBar   backgroundColor="yellow" translucent={true}  /> */}
       <WhatsAppHeader />
+      <Modal
+        transparent
+        visible={menuVisible}
+        animationType="fade"
+        onRequestClose={() => setMenuVisible(false)}
+      >
+        <Pressable
+          style={styles.modalOverlay}
+          onPress={() => setMenuVisible(false)}
+        >
+          <View style={styles.modalContainer}>
+            {[
+              'New group',
+              'New broadcast',
+              'Linked devices',
+              'Starred messages',
+              'Settings',
+            ].map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.modalItem}
+                activeOpacity={0.6}
+                onPress={() => {
+                  setMenuVisible(false);
+                  alert(item);
+                }}
+              >
+                <Text style={styles.modalText}>{item}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </Pressable>
+      </Modal>
+
       <View style={styles.topBarContainer}>
 
         {
@@ -76,7 +114,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#008069',
     gap: scale(10),
     paddingTop: 50,
-    width:'100%'
+    width: '100%'
 
   },
   topBarButton: {
@@ -85,7 +123,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: '#008069',
     paddingBottom: verticalScale(10),
-    marginBottom:scale(1.5)
+    marginBottom: scale(1.5)
   },
   topBarText: {
     fontSize: moderateScale(18),
@@ -99,19 +137,46 @@ const styles = StyleSheet.create({
   },
   whatsappHeaderStyle: {
     backgroundColor: '#008069',
-    flexDirection:'row',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: scale(12),
-    paddingTop:10,
+    paddingTop: 10,
     alignItems: 'center',
   },
   iconContainer: {
     flexDirection: 'row',
-    gap:scale(13)
+    gap: scale(13)
   },
-  whatsappText:{
-    fontSize:moderateScale(29),
-    color:'white',
-    fontWeight:'500'
+  whatsappText: {
+    fontSize: moderateScale(29),
+    color: 'white',
+    fontWeight: '500'
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.15)',
+    alignItems: 'flex-end',
+    paddingTop: 90,
+    paddingRight: 15,
+  },
+
+  modalContainer: {
+    backgroundColor: 'white',
+    width: 200,
+    borderRadius: 6,
+    elevation: 8,
+    paddingVertical: 5,
+  },
+
+  modalItem: {
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+  },
+
+  modalText: {
+    fontSize: moderateScale(14),
+    color: 'black',
   },
 })
+
+
